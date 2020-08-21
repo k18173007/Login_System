@@ -1,59 +1,49 @@
-import React, { Component } from 'react'
-import {
-  Nav,
-  NavItem,
-  Collapse,
-  Navbar,
-  NavbarBrand,
-  NavbarToggler,
-} from 'reactstrap'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
-class HeaderComponent extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isNavOpen: false,
-    }
-    this.toggleNav = this.toggleNav.bind(this)
-  }
+function HeaderComponent() {
+  const [isNavCollapsed, setIsNavCollapsed] = useState(true)
 
-  toggleNav() {
-    this.setState({
-      isNavOpen: !this.state.isNavOpen,
-    })
-  }
+  const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed)
 
-  render() {
-    return (
-      <Navbar className="container-fluid navbar-light" expand="md">
-        <div className="container">
-          <NavbarBrand className="text-light nav-link">
-            <NavLink className="text-light nav-link" to="/home">
-              <h2>Priority Pulse</h2>
-            </NavLink>
-          </NavbarBrand>
-          <NavbarToggler onClick={this.toggleNav}>
-            <span className="text-light fa fa-list fa-lg"></span>
-          </NavbarToggler>
-          <Collapse isOpen={this.state.isNavOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink className="text-light nav-link" to="/register">
-                  <h5>Regester</h5>
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink className="text-light nav-link" to="/login">
-                  <h5>Login</h5>
-                </NavLink>
-              </NavItem>
-            </Nav>
-          </Collapse>
+  return (
+    <nav className="pt-3 container-fluid navbar navbar-expand-md">
+      <div className="container">
+        <NavLink className="navbar-brand text-light " to="/home">
+          <h2 className="">Priority Pulse</h2>
+        </NavLink>
+        <button
+          className="custom-toggler navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarsExample09"
+          aria-controls="navbarsExample09"
+          aria-expanded={!isNavCollapsed ? true : false}
+          aria-label="Toggle navigation"
+          onClick={handleNavCollapse}
+        >
+          <span className="fa fa-list fa-lg text-light"></span>
+        </button>
+        <div
+          class={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse ml-auto`}
+          id="navbarsExample09"
+        >
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <NavLink className="nav-link text-light" to="/register">
+                <h5>Register</h5>
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link text-light" to="/login">
+                <h5>Login</h5>
+              </NavLink>
+            </li>
+          </ul>
         </div>
-      </Navbar>
-    )
-  }
+      </div>
+    </nav>
+  )
 }
 
 export default HeaderComponent

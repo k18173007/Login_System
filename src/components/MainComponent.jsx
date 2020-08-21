@@ -5,12 +5,8 @@ import HeaderComponent from './HeaderComponent'
 import LoginComponent from './LoginComponent'
 import RegisterComponent from './RegisterComponent'
 
-class MainComponent extends Component {
-  constructor(props) {
-    super(props)
-  }
+function MainComponent () {
 
-  render() {
     return (
       <>
         <HeaderComponent />
@@ -23,6 +19,5 @@ class MainComponent extends Component {
       </>
     )
   }
-}
 
 export default withRouter(MainComponent)

@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Form, FormGroup, Input, Button} from 'reactstrap'
+import React, { useState } from 'react'
+import { Form, div, Input, Button } from 'reactstrap'
 import { NavLink } from 'react-router-dom'
 import GoogleLogin from 'react-google-login'
 
@@ -21,51 +21,51 @@ function LoginWithGoogle(params) {
   )
 }
 
-class LoginComponent extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      username: '',
-      password: '',
-      hospitalCode: '',
-      check: false,
-      items: [],
-    }
+function LoginComponent() {
+
+  let [Username, updateUsername] = useState('')
+  let [Password, updatePassword] = useState('')
+  let [HospitalCode, updateHospitalCode] = useState('')
+  let [Check, updateCheck] = useState('')
+
+  const getUsername = (e) => {
+    updateUsername(e.target.value)
   }
 
-  handleSubmit = (e) => {
+  const getPassword = (e) => {
+    updatePassword(e.target.value)
+  }
+
+  const getHospitalCode = (e) => {
+    updateHospitalCode(e.target.value)
+  }
+
+  const getCheck = (e) => {
+    updateCheck(e.target.value)
+  }
+
+  const resetForm = (e) => {
+    updateUsername('')
+    updatePassword('')
+    updateHospitalCode('')
+    updateCheck('')
+  }
+
+  const item = {
+    username: Username,
+    password: Password,
+    hospitalCode: HospitalCode,
+    check: Check,
+  }
+
+  const handleSubmit = (e) => {
     e.preventDefault()
-
-    let items = [...this.state.items]
-
-    items.push({
-      username: this.state.username,
-      password: this.state.password,
-      hospitalName: this.state.hospitalCode,
-      check: this.state.check,
-    })
-    console.log(items)
-
-    this.setState({
-      username: '',
-      password: '',
-      hospitalCode: '',
-      check: false,
-    })
+    console.log(item)
+    resetForm()
   }
 
-  handleInputChange = (event) => {
-    const target = event.target
-    const value = target.type === 'checkbox' ? target.checked : target.value
-    const name = target.name
-
-    this.setState({
-      [name]: value,
-    })
-  }
-
-  render() {
-    return (
+  return (
+    <div>
       <div
         id="login-container"
         className="container-fluid d-flex justify-content-center align-items-center py-3"
@@ -75,61 +75,57 @@ class LoginComponent extends Component {
             <h2>Sign In</h2>
             <p>Login with Google Credientials</p>
           </div>
-          <Form
-            onSubmit={this.handleSubmit}
+          <form
+            onSubmit={handleSubmit}
             className="d-flex flex-column mt-2 col-12 col-md-12 col-sm justify-content-center align-items-center"
           >
-            <FormGroup className="col-12 col-md-12 col-sm">
-              <Input
+            <div className="form-group col-12 col-md-12 col-sm">
+              <input
+                className="form-control"
                 type="text"
-                name="username"
-                value={this.state.username}
                 placeholder="Username"
-                onChange={this.handleInputChange}
+                onChange={getUsername}
               />
-            </FormGroup>
-            <FormGroup className="col-12 col-md-12 col-sm">
-              <Input
+            </div>
+            <div className="form-group col-12 col-md-12 col-sm">
+              <input
+                className="form-control"
                 type="password"
-                name="password"
-                value={this.state.password}
                 placeholder="Password"
-                onChange={this.handleInputChange}
+                onChange={getPassword}
               />
-            </FormGroup>
-            <FormGroup className="col-12 col-md-12 col-sm">
-              <Input
+            </div>
+            <div className="form-group col-12 col-md-12 col-sm">
+              <input
+                className="form-control"
                 type="text"
-                name="hospitalCode"
                 placeholder="Hospital Code"
-                value={this.state.hospitalCode}
-                onChange={this.handleInputChange}
+                onChange={getHospitalCode}
               />
-            </FormGroup>
-            <FormGroup className="col-12 col-md-12 col-sm">
-              <Button  className="btn" type="submit" value="submit">
+            </div>
+            <div className="form-group col-12 col-md-12 col-sm">
+              <button className="btn" type="submit">
                 <strong className="text-dark">Login</strong>
-              </Button>
+              </button>
+
               <div className="p-0 d-flex col-12 col-md-12">
                 <div className="p-0 col-6 col-md-6 text-start form-check">
-                  <Input
+                  <input
                     type="checkbox"
                     style={{ position: 'inherit', margin: '0' }}
-                    name="check"
-                    value={this.state.check}
-                    onChange={this.handleInputChange}
-                  />{' '}
+                    onChange={getCheck}
+                  />
                   <a class="ml-2 text-dark">Keep me Logged in</a>
                 </div>
                 <div className="forgot-password p-0 col-6 col-md-6">
                   <a className="text-dark">Forgot Password</a>
                 </div>
               </div>
-            </FormGroup>
-            <FormGroup>
+            </div>
+            <div className="pb-3">
               <LoginWithGoogle />
-            </FormGroup>
-            <FormGroup className="col-12 col-md-12 col-sm">
+            </div>
+            <div className="form-group col-12 col-md-12 col-sm">
               <NavLink
                 className="btn"
                 type="button"
@@ -138,15 +134,15 @@ class LoginComponent extends Component {
               >
                 <strong className="text-dark">Register</strong>
               </NavLink>
-            </FormGroup>
-          </Form>
+            </div>
+          </form>
           <NavLink className="nav-link p-0 text-muted" to="/register">
             Create new account
           </NavLink>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default LoginComponent
