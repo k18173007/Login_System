@@ -37,70 +37,70 @@ function RegisterComponent() {
           <h2>Register</h2>
           <p>Register with Google Credentials</p>
         </div>
-        <Form
+        <form
           onSubmit={handleSubmit}
           className="d-flex flex-column mt-2 col-12 col-md-12 col-sm justify-content-center align-items-center"
         >
-          <FormGroup className="col-12 col-md-12 col-sm">
-            <Input
+          <div  className="form-group col-12 col-md-12 col-sm">
+            <input
               className="form-control"
               name="username"
               type="text"
               placeholder="Username"
               onChange={handleChange}
             />
-          </FormGroup>
-          <FormGroup className="col-12 col-md-12 col-sm">
-            <Input
+          </div>
+          <div  className="form-group col-12 col-md-12 col-sm">
+            <input
               className="form-control"
               name="password"
               type="password"
               placeholder="Password"
               onChange={handleChange}
             />
-          </FormGroup>
-          <FormGroup className="col-12 col-md-12 col-sm">
-            <Input
+          </div>
+          <div  className="form-group col-12 col-md-12 col-sm">
+            <input
               className="form-control"
               name="hospitalName"
               type="text"
               placeholder="Hospital Name"
               onChange={handleChange}
             />
-          </FormGroup>
-          <FormGroup className="col-12 col-md-12 col-sm">
-            <Input
+          </div>
+          <div  className="form-group col-12 col-md-12 col-sm">
+            <input
               className="form-control"
               name="hospitalArea"
               type="text"
               placeholder="Hospital Area"
               onChange={handleChange}
             />
-          </FormGroup>
-          <FormGroup className="col-12 col-md-12 col-sm">
-            <Input
+          </div>
+          <div  className="form-group col-12 col-md-12 col-sm">
+            <input
               className="form-control"
               name="hospitalPhone"
               type="phone"
               placeholder="Hospital Phone"
               onChange={handleChange}
             />
-          </FormGroup>
-          <FormGroup className="col-12 col-md-12 col-sm">
-            <Input
+          </div>
+          <div  className="form-group col-12 col-md-12 col-sm">
+            <input
               className="form-control"
               name="email"
               type="email"
               placeholder="Email"
               onChange={handleChange}
             />
-          </FormGroup>
-          <FormGroup className="col-12 col-md-12 col-sm">
-            <Button type="submit" value="Submit">
+          </div>
+          <div  className="form-group col-12 col-md-12 col-sm">
+            <button type="submit" value="Submit">
               <strong className="text-dark">Register</strong>
-            </Button>
-          </FormGroup>
-        </Form>
+            </button>
+          </div>
+        </form>
         <div className="d-flex">
           <p>Already have an account? </p>
           <NavLink className="nav-link p-0 ml-1 text-muted" to="/login">
